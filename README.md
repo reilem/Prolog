@@ -4,25 +4,24 @@
 
 ### Built-in predicates ###
 
-#### General ####
+#### General Basics ####
 
 ```prolog
-% is/2 - evaluate arithmetic and unify
-X is 3 + 4
-X = 7
+% CONJUNCTION - ,
+X = A , B.
 
-% ; - disjunction
+% DISJUNCTION - ;
 X = A ; B.
 
-% (A -> B ; C) - if-then-else
+% IF-THEN-ELSE - (BOOL -> GOAL1 ; GOAL2)
 (
 X > 20 ->
   % Then
 ;
   % Else
-)
+).
 
-% ! - cut (prevent backtracking)
+% CUT (prevent backtracking) - !
 foo(a(A,B)) = !, foo(A), foo(B).
 ```
 
@@ -41,7 +40,20 @@ X <= Y. % X arithmetically smaller or equal to Y.
 X @< Y. % Term X is smaller than term Y (literal length of characters),
 ```
 
-### List library predicates ###
+### SWI Prolog predicates ###
+
+#### Built-in ####
+
+```prolog
+% is/2 - evaluate arithmetic and unify
+X is 3 + 4. % X = 7
+
+% between/3 - returns true if Value is between Low, High. Use together with
+% findall to make a list of numbers between two certain values.
+between(Low, High, Value)
+```
+
+#### List library predicates ####
 ```prolog
 % length/2 - Length is the number of elements in List.
 length(List, Length).
@@ -60,9 +72,7 @@ select(Elem, List1, List2).
 member(Elem, List).
 ```
 
-### Non-logical predicates ###
-
-#### Basic ####
+#### Non-logical predicates ####
 
 ```prolog
 % var/1   - Success if argument is free
@@ -80,11 +90,7 @@ integer(I).
 % compound/1 - Success if argument is a compound. (ex. a(3,4,"hello")
 % is a compound)
 compound(C).
-```
 
-#### Advanced ####
-
-```prolog
 % functor/3 - Returns the Name and Arity from a given term. Arity = # of
 % elements in term.
 functor(Term, Name, Arity).
@@ -97,7 +103,7 @@ arg(Key, Term, Variable).
 Term =.. TermList
 ```
 
-### Meta-predicates ###
+#### Meta-predicates ####
 
 ```prolog
 % clause/2 - Attempts to assign all variables in the Term and returns
@@ -129,16 +135,16 @@ findall(Template, Goal, Bag).
 time(Goal).
 
 % freeze/2 - performs call on Goal once given Var becomes bound.
-time(Var, Goal).
+freeze(Var, Goal).
 ```
 
 ## List Syntax ##
 
 ```prolog
 % Syntactic sugar
-List = [1,23,4]
+List = [1,23,4].
 % Actual
-List = [1 | [23 | [4]]]
+List = [1 | [23 | [4]]].
 % In predicates
 list_pred([Head|Tail]).
 ```
