@@ -1,5 +1,19 @@
 # USEFUL PROLOG #
 
+## Theory ##
+
+### Difference Lists ###
+
+A Difference list in Prolog is a normal list except the very end of it is a logic variable, paired with that variable. For example:
+```prolog
+List = [a,b,c|E]-E
+```
+When appending two diff lists one could simply just state:
+```prolog
+append(List1-E, List2-W, O) :- E = List2.
+```
+This uses O(1) operations instead of O(n).
+
 ## Built-ins and SWI-prolog library ##
 
 ### Built-in predicates ###
