@@ -51,7 +51,7 @@ X < Y.  % X arithmetically smaller than Y.
 X > Y.  % X arithmetically bigger than Y
 X >= Y. % X arithmetically bigger or equal to Y.
 X =< Y. % X arithmetically smaller or equal to Y.
-X @< Y. % Term X is smaller than term Y (literal length of characters),
+X @< Y. % Term X is smaller than term Y (literal length of characters).
 ```
 
 ### SWI Prolog predicates ###
